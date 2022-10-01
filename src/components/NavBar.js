@@ -16,22 +16,28 @@ const NavBar = () => {
 
 
     return (
-        <div>
-            {
-                open ?
-                    <XMarkIcon onClick={() => { setOpen(!open) }} className="h-6 w-6 " />
-                    :
-                    <Bars3Icon onClick={() => { setOpen(!open) }} className="h-6 w-6 " />
-            }
-            <span>{open ? 'open' : 'close'}</span>
-            <ul className='md:flex justify-center '>
-                {
-                    routes.map(route => <Link
-                        route={route}
-                        key={route.id}
-                    />)
-                }
-            </ul>
+        <div className='p-4 flex justify-between items-center bg-purple-200'>
+            <div>
+                <h2>Logo</h2>
+            </div>
+            <nav className=''>
+                <ul className={`md:flex absolute md:static bg-purple-200 duration-500 ease-in w-full z-50 px-[20px] left-0 ${open ? 'top-[55px]' : 'top-[-150px]'}`}>
+                    {
+                        routes.map(route => <Link
+                            route={route}
+                            key={route.id}
+                        />)
+                    }
+                </ul>
+                <div onClick={() => { setOpen(!open) }} className="h-6 w-6 md:hidden"  >
+                    {
+                        open ?
+                            <XMarkIcon />
+                            :
+                            <Bars3Icon />
+                    }
+                </div>
+            </nav>
         </div>
     );
 };
